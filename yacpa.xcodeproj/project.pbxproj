@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		0D4207A422DE47770010A53B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D4207A222DE47770010A53B /* LaunchScreen.storyboard */; };
 		0D4207AF22DE47770010A53B /* yacpaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4207AE22DE47770010A53B /* yacpaTests.swift */; };
 		0D4207BA22DE47770010A53B /* yacpaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4207B922DE47770010A53B /* yacpaUITests.swift */; };
+		0D4207C922DE48EE0010A53B /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4207C822DE48EE0010A53B /* Quick */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		0D4207B522DE47770010A53B /* yacpaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yacpaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4207B922DE47770010A53B /* yacpaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yacpaUITests.swift; sourceTree = "<group>"; };
 		0D4207BB22DE47770010A53B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0DBABFD722E125BA0024BB6C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/README.md; sourceTree = "<group>"; };
+		0DBABFD822E127D60024BB6C /* yacpa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yacpa.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D4207C922DE48EE0010A53B /* Quick in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +103,7 @@
 		0D42079622DE47730010A53B /* yacpa */ = {
 			isa = PBXGroup;
 			children = (
+				0DBABFD822E127D60024BB6C /* yacpa.entitlements */,
 				0D42079722DE47730010A53B /* AppDelegate.swift */,
 				0D42079922DE47730010A53B /* SceneDelegate.swift */,
 				0D42079B22DE47730010A53B /* ContentView.swift */,
@@ -106,6 +111,7 @@
 				0D4207A222DE47770010A53B /* LaunchScreen.storyboard */,
 				0D4207A522DE47770010A53B /* Info.plist */,
 				0D42079F22DE47770010A53B /* Preview Content */,
+				0DBABFD722E125BA0024BB6C /* README.md */,
 			);
 			path = yacpa;
 			sourceTree = "<group>";
@@ -170,6 +176,9 @@
 				0D4207AC22DE47770010A53B /* PBXTargetDependency */,
 			);
 			name = yacpaTests;
+			packageProductDependencies = (
+				0D4207C822DE48EE0010A53B /* Quick */,
+			);
 			productName = yacpaTests;
 			productReference = 0D4207AA22DE47770010A53B /* yacpaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -224,6 +233,9 @@
 				Base,
 			);
 			mainGroup = 0D42078B22DE47730010A53B;
+			packageReferences = (
+				0D4207C722DE48ED0010A53B /* XCRemoteSwiftPackageReference "Quick" */,
+			);
 			productRefGroup = 0D42079522DE47730010A53B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -434,7 +446,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = yacpa/yacpa.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "yacpa/Preview\\ Content";
 				DEVELOPMENT_TEAM = AUXUTTBC4T;
 				ENABLE_PREVIEWS = YES;
@@ -445,6 +459,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pushleaf.yacpa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -454,7 +469,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = yacpa/yacpa.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "yacpa/Preview\\ Content";
 				DEVELOPMENT_TEAM = AUXUTTBC4T;
 				ENABLE_PREVIEWS = YES;
@@ -465,6 +482,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pushleaf.yacpa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -592,6 +610,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0D4207C722DE48ED0010A53B /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:Quick/Quick.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0D4207C822DE48EE0010A53B /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D4207C722DE48ED0010A53B /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0D42078C22DE47730010A53B /* Project object */;
 }
