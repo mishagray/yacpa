@@ -21,3 +21,6 @@ The design of the app can be kept minimal, but the app has to provide a nice use
 Use the latest version of Swift and the iOS SDK.
 
 Provide a Readme file with the instructions on how to run the app and a short description of your solution.
+
+Suggested Resources
+We suggest the use of the Coindesk API (http://www.coindesk.com/api/), but feel free to use any other one

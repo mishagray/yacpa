@@ -13,9 +13,12 @@
 		0D42079E22DE47770010A53B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D42079D22DE47770010A53B /* Assets.xcassets */; };
 		0D4207A122DE47770010A53B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D4207A022DE47770010A53B /* Preview Assets.xcassets */; };
 		0D4207A422DE47770010A53B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D4207A222DE47770010A53B /* LaunchScreen.storyboard */; };
-		0D4207AF22DE47770010A53B /* yacpaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4207AE22DE47770010A53B /* yacpaTests.swift */; };
 		0D4207BA22DE47770010A53B /* yacpaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4207B922DE47770010A53B /* yacpaUITests.swift */; };
 		0D4207C922DE48EE0010A53B /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4207C822DE48EE0010A53B /* Quick */; };
+		0DBABFDC22E12D6F0024BB6C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBABFDB22E12D6F0024BB6C /* Alamofire */; };
+		0DBABFDE22E12E9A0024BB6C /* CurrentPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFDD22E12E9A0024BB6C /* CurrentPrice.swift */; };
+		0DBABFE222E137600024BB6C /* Coindesk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFE122E137600024BB6C /* Coindesk.swift */; };
+		0DBABFE522E138420024BB6C /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBABFE422E138420024BB6C /* Nimble */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,8 @@
 		0D4207BB22DE47770010A53B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DBABFD722E125BA0024BB6C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/README.md; sourceTree = "<group>"; };
 		0DBABFD822E127D60024BB6C /* yacpa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yacpa.entitlements; sourceTree = "<group>"; };
+		0DBABFDD22E12E9A0024BB6C /* CurrentPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrentPrice.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/CurrentPrice.swift; sourceTree = "<group>"; };
+		0DBABFE122E137600024BB6C /* Coindesk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Coindesk.swift; path = ../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpaTests/Coindesk.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DBABFDC22E12D6F0024BB6C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D4207C922DE48EE0010A53B /* Quick in Frameworks */,
+				0DBABFE522E138420024BB6C /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +110,7 @@
 		0D42079622DE47730010A53B /* yacpa */ = {
 			isa = PBXGroup;
 			children = (
+				0DBABFD922E12C440024BB6C /* Coindesk */,
 				0DBABFD822E127D60024BB6C /* yacpa.entitlements */,
 				0D42079722DE47730010A53B /* AppDelegate.swift */,
 				0D42079922DE47730010A53B /* SceneDelegate.swift */,
@@ -129,6 +137,7 @@
 			children = (
 				0D4207AE22DE47770010A53B /* yacpaTests.swift */,
 				0D4207B022DE47770010A53B /* Info.plist */,
+				0DBABFE122E137600024BB6C /* Coindesk.swift */,
 			);
 			path = yacpaTests;
 			sourceTree = "<group>";
@@ -140,6 +149,14 @@
 				0D4207BB22DE47770010A53B /* Info.plist */,
 			);
 			path = yacpaUITests;
+			sourceTree = "<group>";
+		};
+		0DBABFD922E12C440024BB6C /* Coindesk */ = {
+			isa = PBXGroup;
+			children = (
+				0DBABFDD22E12E9A0024BB6C /* CurrentPrice.swift */,
+			);
+			path = Coindesk;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +175,9 @@
 			dependencies = (
 			);
 			name = yacpa;
+			packageProductDependencies = (
+				0DBABFDB22E12D6F0024BB6C /* Alamofire */,
+			);
 			productName = yacpa;
 			productReference = 0D42079422DE47730010A53B /* yacpa.app */;
 			productType = "com.apple.product-type.application";
@@ -178,6 +198,7 @@
 			name = yacpaTests;
 			packageProductDependencies = (
 				0D4207C822DE48EE0010A53B /* Quick */,
+				0DBABFE422E138420024BB6C /* Nimble */,
 			);
 			productName = yacpaTests;
 			productReference = 0D4207AA22DE47770010A53B /* yacpaTests.xctest */;
@@ -235,6 +256,8 @@
 			mainGroup = 0D42078B22DE47730010A53B;
 			packageReferences = (
 				0D4207C722DE48ED0010A53B /* XCRemoteSwiftPackageReference "Quick" */,
+				0DBABFDA22E12D6F0024BB6C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				0DBABFE322E138420024BB6C /* XCRemoteSwiftPackageReference "Nimble" */,
 			);
 			productRefGroup = 0D42079522DE47730010A53B /* Products */;
 			projectDirPath = "";
@@ -282,6 +305,7 @@
 				0D42079822DE47730010A53B /* AppDelegate.swift in Sources */,
 				0D42079A22DE47730010A53B /* SceneDelegate.swift in Sources */,
 				0D42079C22DE47730010A53B /* ContentView.swift in Sources */,
+				0DBABFDE22E12E9A0024BB6C /* CurrentPrice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D4207AF22DE47770010A53B /* yacpaTests.swift in Sources */,
+				0DBABFE222E137600024BB6C /* Coindesk.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +644,22 @@
 				minimumVersion = 2.1.0;
 			};
 		};
+		0DBABFDA22E12D6F0024BB6C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:Alamofire/Alamofire.git";
+			requirement = {
+				branch = "5.0.0-beta.6";
+				kind = branch;
+			};
+		};
+		0DBABFE322E138420024BB6C /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:Quick/Nimble.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -627,6 +667,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0D4207C722DE48ED0010A53B /* XCRemoteSwiftPackageReference "Quick" */;
 			productName = Quick;
+		};
+		0DBABFDB22E12D6F0024BB6C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DBABFDA22E12D6F0024BB6C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		0DBABFE422E138420024BB6C /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0DBABFE322E138420024BB6C /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
