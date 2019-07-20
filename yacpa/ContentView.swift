@@ -8,14 +8,15 @@
 
 import SwiftUI
 
-struct ContentView : View {
+struct ContentView: View {
     var body: some View {
         Text("Hello World")
     }
 }
 
 #if DEBUG
-struct ContentView_Previews : PreviewProvider {
+// swiftlint:disable:next type_name
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
