@@ -45,7 +45,7 @@ opt_in_rules: # some rules are only opt-in
   - multiline_arguments
 #  - multiline_arguments_brackets
   - multiline_function_chains
-  - multiline_literal_brackets
+#  - multiline_literal_brackets
   - multiline_parameters
 #   - multiline_parameters_brackets
   - nimble_operator
@@ -132,7 +132,7 @@ type_name:
   max_length: # warning and error
     warning: 40
     error: 50
-  excluded: iPhone # excluded via string
+  excluded: iPhone, _Previews # excluded via string
 identifier_name:
   min_length: 3
   excluded: # excluded via string array

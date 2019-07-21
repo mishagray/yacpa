@@ -23,38 +23,38 @@ class Coindesk: QuickSpec {
             context("parsing JSON data") { // 2
                 it("decode currentprice") { // 3
                     let rawData =   """
-                                {
-                                  "time": {
-                                    "updated": "Jul 18, 2019 23:31:00 UTC",
-                                    "updatedISO": "2019-07-18T23:31:00+00:00",
-                                    "updateduk": "Jul 19, 2019 at 00:31 BST"
-                                  },
-                                  "chartName": "Bitcoin",
-                                  "bpi": {
-                                    "USD": {
-                                      "code": "USD",
-                                      "symbol": "&#36;",
-                                      "rate": "10,666.5500",
-                                      "description": "United States Dollar",
-                                      "rate_float": 10666.55
-                                    },
-                                    "GBP": {
-                                      "code": "GBP",
-                                      "symbol": "&pound;",
-                                      "rate": "8,512.9096",
-                                      "description": "British Pound Sterling",
-                                      "rate_float": 8512.9096
-                                    },
-                                    "EUR": {
-                                      "code": "EUR",
-                                      "symbol": "&euro;",
-                                      "rate": "9,481.8696",
-                                      "description": "Euro",
-                                      "rate_float": 9481.8696
-                                    }
-                                  }
-                                }
-                                """
+                        {
+                          "time": {
+                            "updated": "Jul 18, 2019 23:31:00 UTC",
+                            "updatedISO": "2019-07-18T23:31:00+00:00",
+                            "updateduk": "Jul 19, 2019 at 00:31 BST"
+                          },
+                          "chartName": "Bitcoin",
+                          "bpi": {
+                            "USD": {
+                              "code": "USD",
+                              "symbol": "&#36;",
+                              "rate": "10,666.5500",
+                              "description": "United States Dollar",
+                              "rate_float": 10666.55
+                            },
+                            "GBP": {
+                              "code": "GBP",
+                              "symbol": "&pound;",
+                              "rate": "8,512.9096",
+                              "description": "British Pound Sterling",
+                              "rate_float": 8512.9096
+                            },
+                            "EUR": {
+                              "code": "EUR",
+                              "symbol": "&euro;",
+                              "rate": "9,481.8696",
+                              "description": "Euro",
+                              "rate_float": 9481.8696
+                            }
+                          }
+                        }
+                        """
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .iso8601
 
