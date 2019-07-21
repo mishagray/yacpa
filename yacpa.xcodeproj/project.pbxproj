@@ -15,7 +15,7 @@
 		0D4207A422DE47770010A53B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D4207A222DE47770010A53B /* LaunchScreen.storyboard */; };
 		0D4207BA22DE47770010A53B /* YacpaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4207B922DE47770010A53B /* YacpaUITests.swift */; };
 		0D4207C922DE48EE0010A53B /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 0D4207C822DE48EE0010A53B /* Quick */; };
-		0DBABFDC22E12D6F0024BB6C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBABFDB22E12D6F0024BB6C /* Alamofire */; };
+		0D68C0E522E29E4C001DEB0F /* Combine+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D68C0E422E29E4C001DEB0F /* Combine+Alamofire.swift */; };
 		0DBABFDE22E12E9A0024BB6C /* CoindeskAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFDD22E12E9A0024BB6C /* CoindeskAPI.swift */; };
 		0DBABFE222E137600024BB6C /* Coindesk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFE122E137600024BB6C /* Coindesk.swift */; };
 		0DBABFE522E138420024BB6C /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBABFE422E138420024BB6C /* Nimble */; };
@@ -53,6 +53,7 @@
 		0D4207B522DE47770010A53B /* yacpaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yacpaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4207B922DE47770010A53B /* YacpaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YacpaUITests.swift; sourceTree = "<group>"; };
 		0D4207BB22DE47770010A53B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D68C0E422E29E4C001DEB0F /* Combine+Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Combine+Alamofire.swift"; path = "../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Combine+Alamofire.swift"; sourceTree = "<group>"; };
 		0DBABFD722E125BA0024BB6C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/README.md; sourceTree = "<group>"; };
 		0DBABFD822E127D60024BB6C /* yacpa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yacpa.entitlements; sourceTree = "<group>"; };
 		0DBABFDD22E12E9A0024BB6C /* CoindeskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoindeskAPI.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/CoindeskAPI.swift; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DBABFDC22E12D6F0024BB6C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +122,7 @@
 				0D4207A522DE47770010A53B /* Info.plist */,
 				0D42079F22DE47770010A53B /* Preview Content */,
 				0DBABFD722E125BA0024BB6C /* README.md */,
+				0D68C0E422E29E4C001DEB0F /* Combine+Alamofire.swift */,
 			);
 			path = yacpa;
 			sourceTree = "<group>";
@@ -186,7 +187,6 @@
 			);
 			name = yacpa;
 			packageProductDependencies = (
-				0DBABFDB22E12D6F0024BB6C /* Alamofire */,
 			);
 			productName = yacpa;
 			productReference = 0D42079422DE47730010A53B /* yacpa.app */;
@@ -324,7 +324,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint not installed. try 'brew install swiftlint' or check https://github.com/realm/SwiftLint for other options. Comment out the exit 1 from this script if you really won't install swiftlint.  But I will shame you with my gloomly glare if you check things into git without swiftlint enabled\"\n  exit 1\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect\n  swiftlint\nelse\n  echo \"error: SwiftLint not installed. try 'brew install swiftlint' or check https://github.com/realm/SwiftLint for other options. Comment out the exit 1 from this script if you really won't install swiftlint.  But I will shame you with my gloomly glare if you check things into git without swiftlint enabled\"\n  exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -335,6 +335,7 @@
 			files = (
 				0D42079822DE47730010A53B /* AppDelegate.swift in Sources */,
 				0D42079A22DE47730010A53B /* SceneDelegate.swift in Sources */,
+				0D68C0E522E29E4C001DEB0F /* Combine+Alamofire.swift in Sources */,
 				0D42079C22DE47730010A53B /* ContentView.swift in Sources */,
 				0DBABFEA22E27F370024BB6C /* CurrentPrices.swift in Sources */,
 				0DBABFDE22E12E9A0024BB6C /* CoindeskAPI.swift in Sources */,
@@ -699,11 +700,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0D4207C722DE48ED0010A53B /* XCRemoteSwiftPackageReference "Quick" */;
 			productName = Quick;
-		};
-		0DBABFDB22E12D6F0024BB6C /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0DBABFDA22E12D6F0024BB6C /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 		0DBABFE422E138420024BB6C /* Nimble */ = {
 			isa = XCSwiftPackageProductDependency;

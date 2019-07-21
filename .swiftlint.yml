@@ -25,7 +25,7 @@ opt_in_rules: # some rules are only opt-in
   - fallthrough
   - fatal_error_message
   # - file_header
-  - file_name
+  # - file_name
   # - file_types_order
   - first_where
   - force_unwrapping
