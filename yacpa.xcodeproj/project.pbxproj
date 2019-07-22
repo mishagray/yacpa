@@ -24,7 +24,7 @@
 		0DBABFDE22E12E9A0024BB6C /* CoindeskAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFDD22E12E9A0024BB6C /* CoindeskAPI.swift */; };
 		0DBABFE222E137600024BB6C /* Coindesk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFE122E137600024BB6C /* Coindesk.swift */; };
 		0DBABFE522E138420024BB6C /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBABFE422E138420024BB6C /* Nimble */; };
-		0DBABFEA22E27F370024BB6C /* CurrentPrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFE922E27F370024BB6C /* CurrentPrices.swift */; };
+		0DBABFEA22E27F370024BB6C /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFE922E27F370024BB6C /* APIModel.swift */; };
 		0DF1C4B522E54AFA00F873D3 /* CombineExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4B422E54AFA00F873D3 /* CombineExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +69,7 @@
 		0DBABFD822E127D60024BB6C /* yacpa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yacpa.entitlements; sourceTree = "<group>"; };
 		0DBABFDD22E12E9A0024BB6C /* CoindeskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoindeskAPI.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/CoindeskAPI.swift; sourceTree = "<group>"; };
 		0DBABFE122E137600024BB6C /* Coindesk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Coindesk.swift; path = ../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpaTests/Coindesk.swift; sourceTree = "<group>"; };
-		0DBABFE922E27F370024BB6C /* CurrentPrices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrentPrices.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Model/CurrentPrices.swift; sourceTree = "<group>"; };
+		0DBABFE922E27F370024BB6C /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIModel.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Model/APIModel.swift; sourceTree = "<group>"; };
 		0DF1C4B422E54AFA00F873D3 /* CombineExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CombineExtensions.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Utils/CombineExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,7 +197,7 @@
 		0DBABFE622E27E6B0024BB6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0DBABFE922E27F370024BB6C /* CurrentPrices.swift */,
+				0DBABFE922E27F370024BB6C /* APIModel.swift */,
 				0D21390A22E418670026388B /* RefreshableValue.swift */,
 			);
 			path = Model;
@@ -375,7 +375,7 @@
 				0D013CC022E4D2B20047B24E /* Extensions.swift in Sources */,
 				0D42079C22DE47730010A53B /* PriceList.swift in Sources */,
 				0D21390B22E418670026388B /* RefreshableValue.swift in Sources */,
-				0DBABFEA22E27F370024BB6C /* CurrentPrices.swift in Sources */,
+				0DBABFEA22E27F370024BB6C /* APIModel.swift in Sources */,
 				0DBABFDE22E12E9A0024BB6C /* CoindeskAPI.swift in Sources */,
 				0D013CC422E4DE410047B24E /* DummyCoindeskAPI.swift in Sources */,
 				0D013CC622E4DE5D0047B24E /* CoindeskModels.swift in Sources */,
