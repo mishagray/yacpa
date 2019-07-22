@@ -12,7 +12,7 @@ Example of using iOS 13 Combine/SwiftUI with an MVVM Flavor.
 The only 3rd party Open Source libraries I am using are Quick/Nimble for UnitTests.
 
 You may seen AlamoFire as an installed Switft Package Dependency.
-While XCode 11 seems to let you add Swift Packages it is still a mystery how to remove them.  
+While XCode 11 seems to let you add Swift Packages it is still a mystery how to remove them.  None of the source should be using Alamofire.
 
 
 ## Notes ##
