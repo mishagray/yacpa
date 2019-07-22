@@ -101,7 +101,6 @@
 		0D4207B522DE47770010A53B /* yacpaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yacpaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4207B922DE47770010A53B /* YacpaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YacpaUITests.swift; sourceTree = "<group>"; };
 		0D4207BB22DE47770010A53B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0DBABFD722E125BA0024BB6C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/README.md; sourceTree = "<group>"; };
 		0DBABFD822E127D60024BB6C /* yacpa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yacpa.entitlements; sourceTree = "<group>"; };
 		0DBABFDD22E12E9A0024BB6C /* CoindeskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoindeskAPI.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/CoindeskAPI.swift; sourceTree = "<group>"; };
 		0DBABFE122E137600024BB6C /* Coindesk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Coindesk.swift; path = ../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpaTests/Coindesk.swift; sourceTree = "<group>"; };
@@ -112,7 +111,6 @@
 		0DF1C4BF22E5A31000F873D3 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		0DF1C4C222E5A31000F873D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		0DF1C4C422E5A31000F873D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0DF1C4D322E5AE0B00F873D3 /* Coindesk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coindesk.swift; sourceTree = "<group>"; };
 		0DF1C4D422E5B14C00F873D3 /* PriceListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PriceListRow.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Views/PriceListRow.swift; sourceTree = "<group>"; };
 		0DF1C4D622E5B60B00F873D3 /* CoindeskRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoindeskRequest.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/CoindeskRequest.swift; sourceTree = "<group>"; };
 		0DF1C4D922E5B68300F873D3 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DummyData.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/DummyData.swift; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				0D42079622DE47730010A53B /* yacpa */,
-				0DF1C4D322E5AE0B00F873D3 /* Coindesk.swift */,
 				0D4207AD22DE47770010A53B /* yacpaTests */,
 				0D4207B822DE47770010A53B /* yacpaUITests */,
 				0DF1C4BE22E5A31000F873D3 /* today */,
@@ -211,7 +208,6 @@
 				0D4207A222DE47770010A53B /* LaunchScreen.storyboard */,
 				0D4207A522DE47770010A53B /* Info.plist */,
 				0D42079F22DE47770010A53B /* Preview Content */,
-				0DBABFD722E125BA0024BB6C /* README.md */,
 			);
 			path = yacpa;
 			sourceTree = "<group>";
