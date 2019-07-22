@@ -51,8 +51,11 @@ While XCode 11 seems to let you add Swift Packages it is still a mystery how to 
 
 * Views/DetailView.swift
   * the Detail view and it's related ViewModels.  Two different ViewModels depending upon if the data is 'historical' or 'live' since each needs very different API calls.
-Utils/
-    Some simple utilities and Extensions.
+
+
+* Utils/*
+  * Some simple utilities and Extensions.
+
 
 The 'today widget' target shares the MVVM API and Layer classes.
 The View is just a Storyboard, but it updates reactively.  THe only thing I didn't get time to do was to wire up the widgetPerformUpdate to be 'correct'.  I worry that I am lying that the refresh is done when it MAY NOT BE.  But everything seems to work.
@@ -89,7 +92,7 @@ NOTE:  I have ONLY TESTED THIS In the XCode 11 Beta 4 Simulator.
 
 It works on iPhone and Mac just fine.
 
-##### WARNING on iPAD: ##### 
+##### WARNING on iPAD: #####
 *Does not work in portrait view on iPad!*
 
 There is a weird layout bug related to the SplitView.  Doesn't show anything in portrait mode, but if you rotate it it works fine.  It seems to putting the 'DetailView' on top of the NavigationView in portraid mode?  I think this is a SwiftUI bug.
