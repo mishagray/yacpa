@@ -6,7 +6,10 @@
 //  Copyright © 2019 Michael Gray. All rights reserved.
 //
 
+
 import Foundation
+//  JSON MODELS that are returned from CoinDesk API.
+//  All of the Types here EXACTLY MATCH the JSON Returned from the API.
 
 //  from https://www.coindesk.com/api
 //  https://api.coindesk.com/v1/bpi/currentprice.json
@@ -57,6 +60,11 @@ typealias SupportedCurrencies = [SupportedCurrency]
 
 
 // MARK: - HistoricalCloseForDay
+
+///
+// This one is NOT Returned from CoinDesk. But this is complted from other JSON
+// depending on if the data is 'current' or 'historcal'.
+///
 struct HistoricalCloseForDay {
     var prices: [String: Double]
     let date: Date

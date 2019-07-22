@@ -12,7 +12,7 @@ import SwiftUI
 protocol DetailViewModelType: BindableObject {
 
     var prices: [String: Double] { get }
-    var date: Date { get }
+    var date: Date? { get }
     var symbols: [String: String] { get }
 
 }
@@ -35,7 +35,7 @@ final class HistoricalDetailViewModel<Model: ModelType>: DetailViewModelType {
         }
     }
 
-    var date = Date() {
+    var date: Date? = nil {
         willSet {
             willChange.send()
         }
@@ -103,7 +103,7 @@ final class CurrentPriceDetailViewModel<Model: ModelType>: DetailViewModelType {
         }
     }
 
-    var date = Date() {
+    var date: Date? = nil {
         willSet {
             willChange.send()
         }
@@ -170,7 +170,10 @@ struct DetailView<ViewModel: DetailViewModelType>: View {
     }
 
     var dateText: String {
-        self.formatter.string(from: self.viewModel.date)
+        guard let date = self.viewModel.date else {
+            return ""
+        }
+        return self.formatter.string(from: date)
     }
 
     var body: some View {

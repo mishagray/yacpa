@@ -10,17 +10,25 @@ import Combine
 import Foundation
 
 
-typealias ModelProperty<T> = CurrentValueSubject<T, Never>
-
 protocol ModelType {
     associatedtype Failure: Error
 
+    // what is the default curreny to show.
+    // If we later add some 'settings' we could allos the user to select ANY currency that CoinDesk supports.
     var currency: AnyPublisher<String, Never> { get }
+
+    // this supports fetching/refreshing the latest value.
     var currentPriceRefreshable: RefreshableValue<CurrentPrice, Failure> { get }
+
+    // this supports fetching historicalValues.
     var historicalPricesRefreshable: RefreshableValue<HistoricalClose, Failure> { get }
+    // set the rate at which things refresh.
+    // NOTE:  currently only effects currentPrice
     var refreshRate: TimeInterval { get }
 
     func setRefreshRate(timeInterval: TimeInterval)
+
+    //  refresh data now.
     func refresh()
 
     func getHistoricalCloseForDay(currencies: [String], date: String) -> AnyPublisher<HistoricalCloseForDay, Never>
@@ -29,6 +37,9 @@ protocol ModelType {
 }
 
 extension ModelType {
+
+    // these are just derived from the protocol, so we will add them here.
+    // They instantly get added to both APIModel and DummyModel
 
     var currentPrice: AnyPublisher<CurrentPrice, Never> {
         return currentPriceRefreshable.values
@@ -70,6 +81,7 @@ final class APIModel<API: CoinDeskAPIType>: ModelType {
     private var cancelables = Set<AnyCancellable>()
 
 
+    // this will create/destory a Timer.TimerPublisher as needed to force refreshes.
     var refreshRate: TimeInterval = 0.0 {
         didSet {
             self.timerCancelable?.cancel()

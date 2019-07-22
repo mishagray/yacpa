@@ -70,19 +70,30 @@ extension Publisher {
     }
 }
 
+// So it turns out ... you DON'T want to bind to most Model oublishers on the ViewModel's in init().
+// What we relly want to do is delay 'binding()' to the Model Publishers, until some View is asking for data.
+// So this is conveience replacement for PassthroughSubject for ViewModels.
+// Works just like PassthroughSubject<Void, Never>, except it will call a block the first time
+// someone subscribes to your BindingObbject.
+// This is a good time to wireup the model publishers to your viewModel data!
+// Take care to only use '[weak self]' bindings on your trigger operation.
 class BindOnSubscription: Publisher {
     typealias Output = Void
     typealias Failure = Never
 
 
     private let innerWillChange = PassthroughSubject<Void, Never>()
+
+    // this is the only good way left in Swift to do a 'dispatch_once'.
+    // Is this really easier to understand?
     private lazy var doBindOnce: Void = {
         // Do this once
         self.bindOperation()
     }()
 
     var bindOperation: () -> Void
-
+    // Pass in the operation you want to call to trigger your objects data.
+    // MAKE SURE TO SET 'self' as WEAK.   Otherwise it's a retain loop.
     init(bindOperation: @escaping () -> Void) {
         self.bindOperation = bindOperation
     }
@@ -92,6 +103,7 @@ class BindOnSubscription: Publisher {
     }
 
     func receive<S>(subscriber: S) where S: Subscriber, S.Failure == Never, S.Input == Void {
+        // someone is subscribing!  time to see if we have triggered our operation.
         _ = self.doBindOnce
         innerWillChange.receive(subscriber: subscriber)
     }
@@ -102,8 +114,8 @@ class BindOnSubscription: Publisher {
 // useful if you want to convert a generic Publisher into a CurrentValueSubject
 
 // DOES THIS LEAK?  I don't think so...  but we need to watch out.
-// it seems ok as a Property on a class or struct, but not as an object 'returned'.
-// Basically makes it easy to not create a CurrentValueSubject and AnyCancellable to own the sink.
+// it seems ok as a Property on a class or struct, but not as an object 'returned', since the contents are copied?
+// This thing MAYBE a Bad idea.
 struct BoundCurrentValue<Output>: Publisher {
 
     typealias Failure = Never

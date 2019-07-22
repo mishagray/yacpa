@@ -9,7 +9,11 @@
 import Combine
 import Foundation
 
-
+///
+//  This is to simplify refreshing() async data, that may or may not change.
+//  Its also clear, that you don't want ERRORS to clobber any good cached data, but we
+//  sill want Error signals to help later add error handling.
+//  (There is no error handling now).
 final class RefreshableValue<Output, Failure: Error> {
 
     typealias ResultOutput = Result<Output, Failure>
@@ -54,6 +58,8 @@ final class RefreshableValue<Output, Failure: Error> {
     // will return 'true' if a refresh operation is happening.
     let refreshCount = CurrentValueSubject<Int, Never>(0)
 
+    // this is type erased into AnyProducer<Bool,None>
+
     typealias IS_REFRESHING_PRODUCER = Publishers.Map<CurrentValueSubject<Int, Never>, Bool>
 
     var isRefreshing: IS_REFRESHING_PRODUCER {
@@ -66,6 +72,8 @@ final class RefreshableValue<Output, Failure: Error> {
     // this will keep fetches going, even if nobody binds to the public vars
     let lastResult: BoundCurrentValue<ResultOutput?>
 
+
+    // Takes an operation that shoud return a Publisher that is fetching the data, and returns a Result<Output, Failure>
     init<P: Publisher>(fetchResultOperation: @escaping () -> P) where P.Failure == Never, P.Output == Result<Output, Failure> {
 
         let fetches = refreshSubject
@@ -86,6 +94,8 @@ final class RefreshableValue<Output, Failure: Error> {
   }
 
 
+    // This is useful if you want want to call a traditional 'callback' based network API request.
+    // (AKA Alamofire).
     convenience init(asyncOperator: @escaping ((Result<Output, Failure>) -> Void) -> Void) {
         self.init {
             Future { promise in
@@ -94,6 +104,8 @@ final class RefreshableValue<Output, Failure: Error> {
         }
     }
 
+    // Takes an operation that shoud return a Publisher of ANY Output/Failure. The Publisher is 'mapped' into a
+    // a new publisher that converts it into a Result<Output,Failure> type.
     convenience init<P: Publisher>(failableOperation: @escaping () -> P) where P.Failure == Failure, P.Output == Output {
         self.init {
             failableOperation()
@@ -105,6 +117,11 @@ final class RefreshableValue<Output, Failure: Error> {
                 }
         }
    }
+
+    // triggers the refresh of data().
+    // This casuses the refreshSubject to trigger again.
+    // This is useful since it will prevent new API calls while some are in progress.
+    // Otherwise, bad things can happen if two refresh()'s occur close to each other, but return out-of-order.
     func refresh() {
         print("\(Self.self) refresh()")
         refreshSubject.send(())

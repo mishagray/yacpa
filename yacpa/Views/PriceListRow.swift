@@ -30,13 +30,6 @@ final class PriceListRowViewModel<Model: ModelType>: BindableObject, Hashable, I
         }
     }
 
-    var historicalDetailViewModel: HistoricalDetailViewModel<Model> {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFormatter.string(from: self.date)
-        return HistoricalDetailViewModel(dateString: dateString)
-    }
-
     var dateString: String {
         if showMinutes {
             let formatter = DateFormatter()
@@ -55,10 +48,22 @@ final class PriceListRowViewModel<Model: ModelType>: BindableObject, Hashable, I
     }
 
     init(price: String, date: Date, showMinutes: Bool = false) {
+        // NOTE is is better or not to call 'willChange.send()' here?
+        // I like that it only triggers once, but it's confusing that it's sent BEFORE the data is changed.
+        // I'm also worried of removing the 'didSet' operations cause what if you forget to trugger it here?
         self.price = price
         self.date = date
         self.showMinutes = showMinutes
     }
+
+    // viewModels begatting viewModels.
+    var historicalDetailViewModel: HistoricalDetailViewModel<Model> {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: self.date)
+        return HistoricalDetailViewModel(dateString: dateString)
+    }
+
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(date)

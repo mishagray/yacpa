@@ -29,7 +29,7 @@
 		0DF1C4BD22E5A31000F873D3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF1C4BC22E5A31000F873D3 /* NotificationCenter.framework */; };
 		0DF1C4C022E5A31000F873D3 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4BF22E5A31000F873D3 /* TodayViewController.swift */; };
 		0DF1C4C322E5A31000F873D3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DF1C4C122E5A31000F873D3 /* MainInterface.storyboard */; };
-		0DF1C4C722E5A31000F873D3 /* today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0DF1C4BA22E5A31000F873D3 /* today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0DF1C4C722E5A31000F873D3 /* today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0DF1C4BA22E5A31000F873D3 /* today.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0DF1C4CC22E5A3B300F873D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CBF22E4D2B20047B24E /* Extensions.swift */; };
 		0DF1C4CD22E5A3B300F873D3 /* HasDummyJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CC722E4E4290047B24E /* HasDummyJSONData.swift */; };
 		0DF1C4CE22E5A3B300F873D3 /* CombineExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4B422E54AFA00F873D3 /* CombineExtensions.swift */; };
@@ -38,6 +38,9 @@
 		0DF1C4D122E5A40700F873D3 /* CoindeskAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFDD22E12E9A0024BB6C /* CoindeskAPI.swift */; };
 		0DF1C4D222E5A40D00F873D3 /* CoindeskModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CC522E4DE5D0047B24E /* CoindeskModels.swift */; };
 		0DF1C4D522E5B14C00F873D3 /* PriceListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4D422E5B14C00F873D3 /* PriceListRow.swift */; };
+		0DF1C4D722E5B60B00F873D3 /* CoindeskRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4D622E5B60B00F873D3 /* CoindeskRequest.swift */; };
+		0DF1C4D822E5B62C00F873D3 /* CoindeskRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4D622E5B60B00F873D3 /* CoindeskRequest.swift */; };
+		0DF1C4DA22E5B68300F873D3 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4D922E5B68300F873D3 /* DummyData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +114,8 @@
 		0DF1C4C422E5A31000F873D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DF1C4D322E5AE0B00F873D3 /* Coindesk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coindesk.swift; sourceTree = "<group>"; };
 		0DF1C4D422E5B14C00F873D3 /* PriceListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PriceListRow.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Views/PriceListRow.swift; sourceTree = "<group>"; };
+		0DF1C4D622E5B60B00F873D3 /* CoindeskRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoindeskRequest.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/CoindeskRequest.swift; sourceTree = "<group>"; };
+		0DF1C4D922E5B68300F873D3 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DummyData.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/DummyData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,8 +156,8 @@
 		0D013CBD22E4D22A0047B24E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0D42079B22DE47730010A53B /* PriceList.swift */,
 				0D013CC122E4D3100047B24E /* DetailView.swift */,
+				0D42079B22DE47730010A53B /* PriceList.swift */,
 				0DF1C4D422E5B14C00F873D3 /* PriceListRow.swift */,
 			);
 			path = Views;
@@ -240,9 +245,11 @@
 		0DBABFD922E12C440024BB6C /* Coindesk */ = {
 			isa = PBXGroup;
 			children = (
-				0D013CC522E4DE5D0047B24E /* CoindeskModels.swift */,
 				0DBABFDD22E12E9A0024BB6C /* CoindeskAPI.swift */,
+				0D013CC522E4DE5D0047B24E /* CoindeskModels.swift */,
+				0DF1C4D622E5B60B00F873D3 /* CoindeskRequest.swift */,
 				0D013CC322E4DE410047B24E /* DummyCoindeskAPI.swift */,
+				0DF1C4D922E5B68300F873D3 /* DummyData.swift */,
 			);
 			path = Coindesk;
 			sourceTree = "<group>";
@@ -472,12 +479,14 @@
 				0D42079822DE47730010A53B /* AppDelegate.swift in Sources */,
 				0D013CC222E4D3100047B24E /* DetailView.swift in Sources */,
 				0D013CC822E4E4290047B24E /* HasDummyJSONData.swift in Sources */,
+				0DF1C4D722E5B60B00F873D3 /* CoindeskRequest.swift in Sources */,
 				0DF1C4B522E54AFA00F873D3 /* CombineExtensions.swift in Sources */,
 				0D42079A22DE47730010A53B /* SceneDelegate.swift in Sources */,
 				0D013CC022E4D2B20047B24E /* Extensions.swift in Sources */,
 				0DF1C4D522E5B14C00F873D3 /* PriceListRow.swift in Sources */,
 				0D42079C22DE47730010A53B /* PriceList.swift in Sources */,
 				0D21390B22E418670026388B /* RefreshableValue.swift in Sources */,
+				0DF1C4DA22E5B68300F873D3 /* DummyData.swift in Sources */,
 				0DBABFEA22E27F370024BB6C /* APIModel.swift in Sources */,
 				0DBABFDE22E12E9A0024BB6C /* CoindeskAPI.swift in Sources */,
 				0D013CC422E4DE410047B24E /* DummyCoindeskAPI.swift in Sources */,
@@ -510,6 +519,7 @@
 				0DF1C4D122E5A40700F873D3 /* CoindeskAPI.swift in Sources */,
 				0DF1C4D222E5A40D00F873D3 /* CoindeskModels.swift in Sources */,
 				0DF1C4CD22E5A3B300F873D3 /* HasDummyJSONData.swift in Sources */,
+				0DF1C4D822E5B62C00F873D3 /* CoindeskRequest.swift in Sources */,
 				0DF1C4D022E5A3BC00F873D3 /* RefreshableValue.swift in Sources */,
 				0DF1C4CE22E5A3B300F873D3 /* CombineExtensions.swift in Sources */,
 				0DF1C4CF22E5A3BC00F873D3 /* APIModel.swift in Sources */,
@@ -531,6 +541,7 @@
 		};
 		0DF1C4C622E5A31000F873D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 0DF1C4B922E5A31000F873D3 /* today */;
 			targetProxy = 0DF1C4C522E5A31000F873D3 /* PBXContainerItemProxy */;
 		};
