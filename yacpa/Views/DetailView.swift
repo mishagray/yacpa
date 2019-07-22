@@ -144,17 +144,6 @@ struct IdentifierString: Identifiable {
 struct DetailView<ViewModel: DetailViewModelType>: View {
     @ObjectBinding var viewModel: ViewModel
 
-    var priceTexts: [String] {
-        return self.viewModel.prices.map { entry in
-            let (currency, price) = entry
-
-            let symbol = viewModel.symbols[currency] ?? currency
-
-            let priceString = String(format: "%0.2f", price)
-            return "\(symbol) \(priceString)"
-
-        }.sorted().reversed()
-    }
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -162,6 +151,21 @@ struct DetailView<ViewModel: DetailViewModelType>: View {
         formatter.doesRelativeDateFormatting = true
         return formatter
     }()
+
+    var priceTexts: [String] {
+        return self.viewModel.prices
+            .map { entry in
+                let (currency, price) = entry
+
+                let symbol = viewModel.symbols[currency] ?? currency
+
+                let priceString = String(format: "%0.2f", price)
+                return "\(symbol) \(priceString)"
+
+            }
+            .sorted()
+            .reversed()
+    }
 
     var dateText: String {
         self.formatter.string(from: self.viewModel.date)

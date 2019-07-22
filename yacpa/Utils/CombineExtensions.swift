@@ -81,8 +81,8 @@ class BindOnSubscription: Publisher {
         self.bindOperation()
     }()
 
-
     var bindOperation: () -> Void
+
     init(bindOperation: @escaping () -> Void) {
         self.bindOperation = bindOperation
     }
