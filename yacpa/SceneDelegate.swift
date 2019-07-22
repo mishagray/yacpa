@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    let model = APIModel(api: CoinDeskAPI.self)
 
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
@@ -27,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let viewModel = PriceListViewModel(api: CoinDeskAPI.self)
+            let viewModel = PriceListViewModel(model: model)
             let priceList = PriceList(viewModel: viewModel)
             window.rootViewController = UIHostingController(rootView: priceList)
             self.window = window

@@ -1,4 +1,5 @@
 disabled_rules: # rule identifiers to exclude from running
+  - type_name # swiftUI previews use
 opt_in_rules: # some rules are only opt-in
   - anyobject_protocol
   - array_init
@@ -29,7 +30,7 @@ opt_in_rules: # some rules are only opt-in
   # - file_types_order
   - first_where
   - force_unwrapping
-  - function_default_parameter_at_end
+#  - function_default_parameter_at_end
   - identical_operands
   - implicit_return
   - implicitly_unwrapped_optional
@@ -127,12 +128,12 @@ vertical_whitespace:
   max_empty_lines: 2
 # naming rules can set warnings/errors for min_length and max_length
 # additionally they can set excluded names
-type_name:
-  min_length: 4 # only warning
-  max_length: # warning and error
-    warning: 40
-    error: 50
-  excluded: iPhone, _Previews # excluded via string
+# type_name:
+#   min_length: 4 # only warning
+#   max_length: # warning and error
+#     warning: 40
+#     error: 50
+#   excluded: iPhone, _Previews # excluded via string
 identifier_name:
   min_length: 3
   excluded: # excluded via string array

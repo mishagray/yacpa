@@ -10,64 +10,101 @@ import Combine
 import Foundation
 
 
-struct RefreshableValue<Output, Failure: Error> {
+final class RefreshableValue<Output, Failure: Error> {
 
-    // sends succesful values received.  A refresh() failure will NOT effect this publisher.
-    let values: AnyPublisher<Output, Never>
-
-    // is nil, if the last refresh was succesful, otherwise has the error for the fetch
-    let errors: AnyPublisher<Failure?, Never>
+    typealias ResultOutput = Result<Output, Failure>
 
     // sends a result for each refresh()
-    let results: AnyPublisher<Result<Output, Failure>, Never>
+    var results: AnyPublisher<ResultOutput, Never> {
+        lastResult.compactMap { $0 }.eraseToAnyPublisher()
+    }
 
-    // used to trigger updates on a refresh() request
-    private let priceFetcherRefresh: PassthroughSubject<Void, Never>
-
-
-    init<P: Publisher>(_ fetchOperation: @escaping () -> P) where P.Failure == Failure, P.Output == Output {
-
-        self.priceFetcherRefresh = PassthroughSubject<Void, Never>()
-
-        let innerResults = self.priceFetcherRefresh
-                    .flatMap { _ in
-                                fetchOperation()
-                                    .map { output -> Result<Output, Failure> in
-                                        .success(output)
-                                    }
-                                    .catch {
-                                        Just(Result<Output, Failure>.failure($0))
-                                    }
-                    }
-                    .receive(on: DispatchQueue.main)
-
-        self.results = innerResults.eraseToAnyPublisher()
-        self.values = innerResults
-            .compactMap {
+    // sends succesful values received.  A refresh() failure will NOT effect this publisher.
+    var values: AnyPublisher<Output, Never> {
+        lastResult.compactMap {
                 switch $0 {
-                case let .success(output):
+                case let .some(.success(output)):
                     return output
 
-                case .failure:
+                default:
                     return nil
                 }
-            }
-            .eraseToAnyPublisher()
-
-        self.errors = innerResults
-            .map {
-                switch $0 {
-                case .success:
-                    return nil
-
-                case let .failure(error):
-                    return error
-                }
-            }
+        }
             .eraseToAnyPublisher()
     }
+
+    // is nil, if the last refresh was succesful, otherwise has the error for the last refresh
+    var errors: AnyPublisher<Failure?, Never> {
+        lastResult.map {
+                switch $0 {
+                case let .some(.failure(error)):
+                    print("error = \(error)")
+                    return error
+
+                default:
+                    return nil
+                }
+        }
+            .eraseToAnyPublisher()
+    }
+
+    // will return 'true' if a refresh operation is happening.
+    let refreshCount = CurrentValueSubject<Int, Never>(0)
+
+    typealias IS_REFRESHING_PRODUCER = Publishers.Map<CurrentValueSubject<Int, Never>, Bool>
+
+    var isRefreshing: IS_REFRESHING_PRODUCER {
+        return self.refreshCount.map { $0 > 0 }
+    }
+
+    // used to trigger updates on a refresh() request
+    private let refreshSubject = PassthroughSubject<Void, Never>()
+
+    // this will keep fetches going, even if nobody binds to the public vars
+    let lastResult: BoundCurrentValue<ResultOutput?>
+
+    init<P: Publisher>(fetchResultOperation: @escaping () -> P) where P.Failure == Never, P.Output == Result<Output, Failure> {
+
+        let fetches = refreshSubject
+            .flatMap { [refreshCount = self.refreshCount] () -> P in
+                refreshCount.value += 1
+                print("\(Self.self) increased refreshCount.value =\(refreshCount.value)")
+                let fetch = fetchResultOperation()
+                print("\(Self.self) fetch")
+                return fetch
+            }
+            .map { [refreshCount = self.refreshCount] result -> P.Output in
+                refreshCount.value -= 1
+                print("\(Self.self) result = \(result) \n decreased refreshCount.value =\(refreshCount.value)")
+                return result
+            }
+
+        self.lastResult = BoundCurrentValue<ResultOutput?>(boundTo: fetches)
+  }
+
+
+    convenience init(asyncOperator: @escaping ((Result<Output, Failure>) -> Void) -> Void) {
+        self.init {
+            Future { promise in
+                 asyncOperator(promise)
+            }
+        }
+    }
+
+    convenience init<P: Publisher>(failableOperation: @escaping () -> P) where P.Failure == Failure, P.Output == Output {
+        self.init {
+            failableOperation()
+                .map { output -> Result<Output, Failure> in
+                    .success(output)
+                }
+                .catch {
+                    Just(Result<Output, Failure>.failure($0))
+                }
+        }
+   }
     func refresh() {
-        priceFetcherRefresh.send(())
+        print("\(Self.self) refresh()")
+        refreshSubject.send(())
     }
 
 }

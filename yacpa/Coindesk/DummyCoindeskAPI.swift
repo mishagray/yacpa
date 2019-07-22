@@ -184,8 +184,10 @@ struct DummyCoinDeskAPI: CoinDeskAPIType {
 
 }
 
-
 // swiftlint:disable type_name
 // you can change which API to use for Previews
 typealias CoinBaseAPI_Previews = DummyCoinDeskAPI
 // typealias CoinBaseAPI_Previews = CoinDeskAPI      
+
+// swiftlint:disable identifier_name
+var shared_model_Previews = APIModel(api: CoinBaseAPI_Previews.self)

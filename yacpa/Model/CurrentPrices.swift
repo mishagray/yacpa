@@ -10,21 +10,54 @@ import Combine
 import Foundation
 
 
+typealias ModelProperty<T> = CurrentValueSubject<T, Never>
+
+protocol ModelType {
+    associatedtype Failure: Error
+
+    var currency: CurrentValueSubject<String, Never> { get }
+    var currentPriceRefreshable: RefreshableValue<CurrentPrice, Failure> { get }
+    var historicalPricesRefreshable: RefreshableValue<HistoricalClose, Failure> { get }
+    var refreshRate: TimeInterval { get }
+
+    func setRefreshRate(timeInterval: TimeInterval)
+    func refresh()
+}
+
+extension ModelType {
+
+    var currentPrice: AnyPublisher<CurrentPrice, Never> {
+        return currentPriceRefreshable.values
+    }
+    var currentPriceError: AnyPublisher<Failure?, Never> {
+        return currentPriceRefreshable.errors
+    }
+
+    var historicalPrices: AnyPublisher<HistoricalClose, Never> {
+        return historicalPricesRefreshable.values
+    }
+
+    var historicalPricesErrors: AnyPublisher<Failure?, Never> {
+        return historicalPricesRefreshable.errors
+    }
+
+    var isRefreshing: AnyPublisher<Bool, Never> {
+        return Publishers
+            .CombineLatest(currentPriceRefreshable.isRefreshing, historicalPricesRefreshable.isRefreshing)
+            .map { $0 || $1 }
+            .eraseToAnyPublisher()
+    }
+
+
+}
+
 // why no protocol?  Why no
 // So ... it's really nice to have @Published in a Model/ViewModel
 // But you can't use propertyWrappers in a protocol definition.
 // Need to figure out the balance between the desire to have 
-class Model<API: CoinDeskAPIType> {
+class APIModel<API: CoinDeskAPIType>: ModelType {
 
-    enum ModelError: Swift.Error {
-        case noValueAvailable
-    }
-
-    @Published var currentPrice: CurrentPrice?
-    @Published var currentPriceError: API.Failure?
-    @Published var historicalPrices: HistoricalClose?
-    @Published var historicalPricesErrors: API.Failure?
-
+    let currency = CurrentValueSubject<String, Never>("EUR")
     let currentPriceRefreshable: RefreshableValue<CurrentPrice, API.Failure>
     let historicalPricesRefreshable: RefreshableValue<HistoricalClose, API.Failure>
 
@@ -49,49 +82,23 @@ class Model<API: CoinDeskAPIType> {
     }
 
     init(api: API.Type) {
-        currentPrice = nil
-        currentPriceError = nil
-        historicalPrices = nil
-        historicalPricesErrors = nil
 
         currentPriceRefreshable = RefreshableValue {
             api.shared.currentPrice()
         }
-        historicalPricesRefreshable = RefreshableValue {
-            api.shared.historicalClose()
+
+        historicalPricesRefreshable = RefreshableValue { [innerCurrency = currency] in
+            innerCurrency.flatMap {
+                api.shared.historicalClose(currency: $0).mapToResults()
+            }
         }
-
-        currentPriceRefreshable
-            .values
-            .sink { [weak self] in
-                self?.currentPrice = $0
-            }
-        .store(in: &cancelables)
-
-        currentPriceRefreshable
-            .errors
-            .sink { [weak self] in
-                print("error recd = \(String(describing: $0))")
-                self?.currentPriceError = $0
-            }
-        .store(in: &cancelables)
-
-        historicalPricesRefreshable
-            .values
-            .sink { [weak self] in
-                self?.historicalPrices = $0
-            }
-        .store(in: &cancelables)
-
-        historicalPricesRefreshable
-            .errors
-            .sink { [weak self] in
-                self?.historicalPricesErrors = $0
-            }
-        .store(in: &cancelables)
-
         self.refresh()
     }
+
+    func setRefreshRate(timeInterval: TimeInterval) {
+        self.refreshRate = timeInterval
+    }
+
     func refresh() {
         currentPriceRefreshable.refresh()
         historicalPricesRefreshable.refresh()

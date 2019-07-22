@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D013CC022E4D2B20047B24E /* htmlDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CBF22E4D2B20047B24E /* htmlDecode.swift */; };
+		0D013CC022E4D2B20047B24E /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CBF22E4D2B20047B24E /* extensions.swift */; };
 		0D013CC222E4D3100047B24E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CC122E4D3100047B24E /* DetailView.swift */; };
 		0D013CC422E4DE410047B24E /* DummyCoindeskAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CC322E4DE410047B24E /* DummyCoindeskAPI.swift */; };
 		0D013CC622E4DE5D0047B24E /* CoindeskModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CC522E4DE5D0047B24E /* CoindeskModels.swift */; };
@@ -45,7 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0D013CBF22E4D2B20047B24E /* htmlDecode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = htmlDecode.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Utils/htmlDecode.swift; sourceTree = "<group>"; };
+		0D013CBF22E4D2B20047B24E /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = extensions.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Utils/extensions.swift; sourceTree = "<group>"; };
 		0D013CC122E4D3100047B24E /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailView.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Views/DetailView.swift; sourceTree = "<group>"; };
 		0D013CC322E4DE410047B24E /* DummyCoindeskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DummyCoindeskAPI.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/DummyCoindeskAPI.swift; sourceTree = "<group>"; };
 		0D013CC522E4DE5D0047B24E /* CoindeskModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoindeskModels.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/CoindeskModels.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		0D013CBE22E4D27C0047B24E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				0D013CBF22E4D2B20047B24E /* htmlDecode.swift */,
+				0D013CBF22E4D2B20047B24E /* extensions.swift */,
 				0D013CC722E4E4290047B24E /* HasDummyJSONData.swift */,
 			);
 			path = Utils;
@@ -368,7 +368,7 @@
 				0D013CC222E4D3100047B24E /* DetailView.swift in Sources */,
 				0D013CC822E4E4290047B24E /* HasDummyJSONData.swift in Sources */,
 				0D42079A22DE47730010A53B /* SceneDelegate.swift in Sources */,
-				0D013CC022E4D2B20047B24E /* htmlDecode.swift in Sources */,
+				0D013CC022E4D2B20047B24E /* extensions.swift in Sources */,
 				0D42079C22DE47730010A53B /* PriceList.swift in Sources */,
 				0D21390B22E418670026388B /* RefreshableValue.swift in Sources */,
 				0DBABFEA22E27F370024BB6C /* CurrentPrices.swift in Sources */,

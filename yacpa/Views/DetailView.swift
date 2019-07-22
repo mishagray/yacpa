@@ -25,20 +25,15 @@ final class DetailViewModel: BindableObject {
 
     private var cancelables = Set<AnyCancellable>()
 
-    init<API: CoinDeskAPIType>(api: API.Type) {
-        let model = Model(api: api)
-
+    init<Model: ModelType>(model: Model) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
 
-        model.refreshRate = 60.0
-        model.$currentPrice
+        model.setRefreshRate(timeInterval: 60.0)
+        model.currentPrice
             .map { currentPrice -> ([String], String) in
 
-                guard let currentPrice = currentPrice else {
-                    return ([], "")
-                }
                 let priceTexts = currentPrice.bpi.values.map { price -> String in
                     let symbol = price.symbol.htmlDecoded
                     return "\(symbol) \(price.rate)"
@@ -75,9 +70,8 @@ struct DetailView: View {
 #if DEBUG
 // swiftlint:disable:next type_name
 struct DetailView_Previews: PreviewProvider {
-    static let viewModel = DetailViewModel(api: CoinBaseAPI_Previews.self)
     static var previews: some View {
-        DetailView(viewModel: viewModel)
+        DetailView(viewModel: DetailViewModel(model: shared_model_Previews))
     }
 }
 #endif

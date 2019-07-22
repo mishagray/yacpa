@@ -97,7 +97,7 @@ extension CoinDeskAPIType {
 
     // adding a version with default values (protocols don't support default values)
     func historicalClose(index: CoinDeskRequest.Index? = .USD,
-                         currency: String? = "USD",
+                         currency: String? = "EUR",
                          startEnd: (String, String)? = nil) -> AnyPublisher<HistoricalClose, Failure> {
         return self.historicalClose(index, currency, startEnd)
     }
@@ -110,7 +110,7 @@ extension CoinDeskAPIType {
         return shared.currentPriceFor(code: code)
     }
     static func historicalClose(index: CoinDeskRequest.Index? = .USD,
-                                currency: String? = "USD",
+                                currency: String? = "EUR",
                                 startEnd: (String, String)? = nil) -> AnyPublisher<HistoricalClose, Failure> {
         return shared.historicalClose(index, currency, startEnd)
     }
