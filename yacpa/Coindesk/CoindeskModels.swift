@@ -54,3 +54,34 @@ struct SupportedCurrency: Decodable {
 }
 
 typealias SupportedCurrencies = [SupportedCurrency]
+
+
+// MARK: - HistoricalCloseForDay
+struct HistoricalCloseForDay {
+    var prices: [String: Double]
+    let date: Date
+
+    init(date: Date, prices: [String: Double] = [:]) {
+        self.prices = prices
+        self.date = date
+    }
+    init?(dateString: String, prices: [String: Double] = [:]) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        self.prices = prices
+        guard let date = dateFormatter.date(from: dateString) else {
+            return nil
+        }
+        self.date = date
+    }
+}
+
+extension CurrentPrice {
+    var historicalCloseForDay: HistoricalCloseForDay {
+        let prices = self.bpi.mapValues {
+            $0.rateFloat
+        }
+        return HistoricalCloseForDay(date: self.time.updatedISO, prices: prices)
+    }
+}

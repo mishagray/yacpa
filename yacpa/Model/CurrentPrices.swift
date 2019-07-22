@@ -15,7 +15,7 @@ typealias ModelProperty<T> = CurrentValueSubject<T, Never>
 protocol ModelType {
     associatedtype Failure: Error
 
-    var currency: CurrentValueSubject<String, Never> { get }
+    var currency: AnyPublisher<String, Never> { get }
     var currentPriceRefreshable: RefreshableValue<CurrentPrice, Failure> { get }
     var historicalPricesRefreshable: RefreshableValue<HistoricalClose, Failure> { get }
     var refreshRate: TimeInterval { get }
@@ -55,12 +55,13 @@ extension ModelType {
 // So ... it's really nice to have @Published in a Model/ViewModel
 // But you can't use propertyWrappers in a protocol definition.
 // Need to figure out the balance between the desire to have 
-class APIModel<API: CoinDeskAPIType>: ModelType {
+final class APIModel<API: CoinDeskAPIType>: ModelType {
 
-    let currency = CurrentValueSubject<String, Never>("EUR")
+    let currency: AnyPublisher<String, Never>
     let currentPriceRefreshable: RefreshableValue<CurrentPrice, API.Failure>
     let historicalPricesRefreshable: RefreshableValue<HistoricalClose, API.Failure>
 
+    private var currencySubject = CurrentValueSubject<String, Never>("EUR")
     private var cancelables = [AnyCancellable]()
     private var timerCancelable: AnyCancellable?
 
@@ -87,10 +88,13 @@ class APIModel<API: CoinDeskAPIType>: ModelType {
             api.shared.currentPrice()
         }
 
-        historicalPricesRefreshable = RefreshableValue { [innerCurrency = currency] in
+        let innerCurrency = currencySubject.print("Model.currencySubject")
+        currency = currencySubject.print("Model.currency").eraseToAnyPublisher()
+        historicalPricesRefreshable = RefreshableValue {
             innerCurrency.flatMap {
                 api.shared.historicalClose(currency: $0).mapToResults()
             }
+            .print("innerHistory:")
         }
         self.refresh()
     }

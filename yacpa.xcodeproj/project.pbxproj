@@ -25,6 +25,7 @@
 		0DBABFE222E137600024BB6C /* Coindesk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFE122E137600024BB6C /* Coindesk.swift */; };
 		0DBABFE522E138420024BB6C /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBABFE422E138420024BB6C /* Nimble */; };
 		0DBABFEA22E27F370024BB6C /* CurrentPrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFE922E27F370024BB6C /* CurrentPrices.swift */; };
+		0DF1C4B522E54AFA00F873D3 /* CombineExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4B422E54AFA00F873D3 /* CombineExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		0DBABFDD22E12E9A0024BB6C /* CoindeskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoindeskAPI.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Coindesk/CoindeskAPI.swift; sourceTree = "<group>"; };
 		0DBABFE122E137600024BB6C /* Coindesk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Coindesk.swift; path = ../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpaTests/Coindesk.swift; sourceTree = "<group>"; };
 		0DBABFE922E27F370024BB6C /* CurrentPrices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrentPrices.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Model/CurrentPrices.swift; sourceTree = "<group>"; };
+		0DF1C4B422E54AFA00F873D3 /* CombineExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CombineExtensions.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Utils/CombineExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			children = (
 				0D013CBF22E4D2B20047B24E /* Extensions.swift */,
 				0D013CC722E4E4290047B24E /* HasDummyJSONData.swift */,
+				0DF1C4B422E54AFA00F873D3 /* CombineExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				0D42079822DE47730010A53B /* AppDelegate.swift in Sources */,
 				0D013CC222E4D3100047B24E /* DetailView.swift in Sources */,
 				0D013CC822E4E4290047B24E /* HasDummyJSONData.swift in Sources */,
+				0DF1C4B522E54AFA00F873D3 /* CombineExtensions.swift in Sources */,
 				0D42079A22DE47730010A53B /* SceneDelegate.swift in Sources */,
 				0D013CC022E4D2B20047B24E /* Extensions.swift in Sources */,
 				0D42079C22DE47730010A53B /* PriceList.swift in Sources */,

@@ -189,5 +189,7 @@ struct DummyCoinDeskAPI: CoinDeskAPIType {
 typealias CoinBaseAPI_Previews = DummyCoinDeskAPI
 // typealias CoinBaseAPI_Previews = CoinDeskAPI      
 
+typealias Shared_Model_Previews = APIModel<CoinBaseAPI_Previews>
+
 // swiftlint:disable identifier_name
-var shared_model_Previews = APIModel(api: CoinBaseAPI_Previews.self)
+var shared_model_Previews = Shared_Model_Previews(api: CoinBaseAPI_Previews.self)

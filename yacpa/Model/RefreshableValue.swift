@@ -16,12 +16,14 @@ final class RefreshableValue<Output, Failure: Error> {
 
     // sends a result for each refresh()
     var results: AnyPublisher<ResultOutput, Never> {
-        lastResult.compactMap { $0 }.eraseToAnyPublisher()
+        lastResult.compactMap { $0 }
+            .eraseToAnyPublisher()
     }
 
     // sends succesful values received.  A refresh() failure will NOT effect this publisher.
     var values: AnyPublisher<Output, Never> {
-        lastResult.compactMap {
+        lastResult
+            .compactMap {
                 switch $0 {
                 case let .some(.success(output)):
                     return output
@@ -29,13 +31,14 @@ final class RefreshableValue<Output, Failure: Error> {
                 default:
                     return nil
                 }
-        }
+            }
             .eraseToAnyPublisher()
     }
 
     // is nil, if the last refresh was succesful, otherwise has the error for the last refresh
     var errors: AnyPublisher<Failure?, Never> {
-        lastResult.map {
+        lastResult
+            .map {
                 switch $0 {
                 case let .some(.failure(error)):
                     print("error = \(error)")
@@ -44,7 +47,7 @@ final class RefreshableValue<Output, Failure: Error> {
                 default:
                     return nil
                 }
-        }
+            }
             .eraseToAnyPublisher()
     }
 

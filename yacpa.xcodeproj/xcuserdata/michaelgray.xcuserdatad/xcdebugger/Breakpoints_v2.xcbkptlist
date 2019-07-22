@@ -14,8 +14,8 @@
             filePath = "../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Model/RefreshableValue.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "errors"
             landmarkType = "24">
          </BreakpointContent>
@@ -30,26 +30,10 @@
             filePath = "../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Model/RefreshableValue.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "RefreshableValue"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "025E57A9-F2F4-49A5-96D1-25AF3CF1F2EF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Utils/Extensions.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "deinit"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
