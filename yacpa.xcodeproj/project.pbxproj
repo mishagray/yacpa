@@ -26,6 +26,18 @@
 		0DBABFE522E138420024BB6C /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 0DBABFE422E138420024BB6C /* Nimble */; };
 		0DBABFEA22E27F370024BB6C /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFE922E27F370024BB6C /* APIModel.swift */; };
 		0DF1C4B522E54AFA00F873D3 /* CombineExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4B422E54AFA00F873D3 /* CombineExtensions.swift */; };
+		0DF1C4BD22E5A31000F873D3 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF1C4BC22E5A31000F873D3 /* NotificationCenter.framework */; };
+		0DF1C4C022E5A31000F873D3 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4BF22E5A31000F873D3 /* TodayViewController.swift */; };
+		0DF1C4C322E5A31000F873D3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DF1C4C122E5A31000F873D3 /* MainInterface.storyboard */; };
+		0DF1C4C722E5A31000F873D3 /* today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0DF1C4BA22E5A31000F873D3 /* today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0DF1C4CC22E5A3B300F873D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CBF22E4D2B20047B24E /* Extensions.swift */; };
+		0DF1C4CD22E5A3B300F873D3 /* HasDummyJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CC722E4E4290047B24E /* HasDummyJSONData.swift */; };
+		0DF1C4CE22E5A3B300F873D3 /* CombineExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4B422E54AFA00F873D3 /* CombineExtensions.swift */; };
+		0DF1C4CF22E5A3BC00F873D3 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFE922E27F370024BB6C /* APIModel.swift */; };
+		0DF1C4D022E5A3BC00F873D3 /* RefreshableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D21390A22E418670026388B /* RefreshableValue.swift */; };
+		0DF1C4D122E5A40700F873D3 /* CoindeskAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBABFDD22E12E9A0024BB6C /* CoindeskAPI.swift */; };
+		0DF1C4D222E5A40D00F873D3 /* CoindeskModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D013CC522E4DE5D0047B24E /* CoindeskModels.swift */; };
+		0DF1C4D522E5B14C00F873D3 /* PriceListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1C4D422E5B14C00F873D3 /* PriceListRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +55,28 @@
 			remoteGlobalIDString = 0D42079322DE47730010A53B;
 			remoteInfo = yacpa;
 		};
+		0DF1C4C522E5A31000F873D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D42078C22DE47730010A53B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0DF1C4B922E5A31000F873D3;
+			remoteInfo = today;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0DF1C4CB22E5A31000F873D3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0DF1C4C722E5A31000F873D3 /* today.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0D013CBF22E4D2B20047B24E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Utils/Extensions.swift; sourceTree = "<group>"; };
@@ -71,6 +104,13 @@
 		0DBABFE122E137600024BB6C /* Coindesk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Coindesk.swift; path = ../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpaTests/Coindesk.swift; sourceTree = "<group>"; };
 		0DBABFE922E27F370024BB6C /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIModel.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Model/APIModel.swift; sourceTree = "<group>"; };
 		0DF1C4B422E54AFA00F873D3 /* CombineExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CombineExtensions.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Utils/CombineExtensions.swift; sourceTree = "<group>"; };
+		0DF1C4BA22E5A31000F873D3 /* today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DF1C4BC22E5A31000F873D3 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		0DF1C4BF22E5A31000F873D3 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		0DF1C4C222E5A31000F873D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		0DF1C4C422E5A31000F873D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0DF1C4D322E5AE0B00F873D3 /* Coindesk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coindesk.swift; sourceTree = "<group>"; };
+		0DF1C4D422E5B14C00F873D3 /* PriceListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PriceListRow.swift; path = ../../../../../../../System/Volumes/Data/Users/michaelgray/Workspaces/n26/yacpa/yacpa/Views/PriceListRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +137,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0DF1C4B722E5A31000F873D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DF1C4BD22E5A31000F873D3 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -105,6 +153,7 @@
 			children = (
 				0D42079B22DE47730010A53B /* PriceList.swift */,
 				0D013CC122E4D3100047B24E /* DetailView.swift */,
+				0DF1C4D422E5B14C00F873D3 /* PriceListRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,8 +172,11 @@
 			isa = PBXGroup;
 			children = (
 				0D42079622DE47730010A53B /* yacpa */,
+				0DF1C4D322E5AE0B00F873D3 /* Coindesk.swift */,
 				0D4207AD22DE47770010A53B /* yacpaTests */,
 				0D4207B822DE47770010A53B /* yacpaUITests */,
+				0DF1C4BE22E5A31000F873D3 /* today */,
+				0DF1C4BB22E5A31000F873D3 /* Frameworks */,
 				0D42079522DE47730010A53B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -135,6 +187,7 @@
 				0D42079422DE47730010A53B /* yacpa.app */,
 				0D4207AA22DE47770010A53B /* yacpaTests.xctest */,
 				0D4207B522DE47770010A53B /* yacpaUITests.xctest */,
+				0DF1C4BA22E5A31000F873D3 /* today.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,6 +256,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		0DF1C4BB22E5A31000F873D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DF1C4BC22E5A31000F873D3 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0DF1C4BE22E5A31000F873D3 /* today */ = {
+			isa = PBXGroup;
+			children = (
+				0DF1C4BF22E5A31000F873D3 /* TodayViewController.swift */,
+				0DF1C4C122E5A31000F873D3 /* MainInterface.storyboard */,
+				0DF1C4C422E5A31000F873D3 /* Info.plist */,
+			);
+			path = today;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,10 +285,12 @@
 				0D42079022DE47730010A53B /* Sources */,
 				0D42079122DE47730010A53B /* Frameworks */,
 				0D42079222DE47730010A53B /* Resources */,
+				0DF1C4CB22E5A31000F873D3 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0DF1C4C622E5A31000F873D3 /* PBXTargetDependency */,
 			);
 			name = yacpa;
 			packageProductDependencies = (
@@ -266,6 +339,23 @@
 			productReference = 0D4207B522DE47770010A53B /* yacpaUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		0DF1C4B922E5A31000F873D3 /* today */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DF1C4C822E5A31000F873D3 /* Build configuration list for PBXNativeTarget "today" */;
+			buildPhases = (
+				0DF1C4B622E5A31000F873D3 /* Sources */,
+				0DF1C4B722E5A31000F873D3 /* Frameworks */,
+				0DF1C4B822E5A31000F873D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = today;
+			productName = today;
+			productReference = 0DF1C4BA22E5A31000F873D3 /* today.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -286,6 +376,9 @@
 					0D4207B422DE47770010A53B = {
 						CreatedOnToolsVersion = 11.0;
 						TestTargetID = 0D42079322DE47730010A53B;
+					};
+					0DF1C4B922E5A31000F873D3 = {
+						CreatedOnToolsVersion = 11.0;
 					};
 				};
 			};
@@ -310,6 +403,7 @@
 				0D42079322DE47730010A53B /* yacpa */,
 				0D4207A922DE47770010A53B /* yacpaTests */,
 				0D4207B422DE47770010A53B /* yacpaUITests */,
+				0DF1C4B922E5A31000F873D3 /* today */,
 			);
 		};
 /* End PBXProject section */
@@ -336,6 +430,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DF1C4B822E5A31000F873D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DF1C4C322E5A31000F873D3 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +475,7 @@
 				0DF1C4B522E54AFA00F873D3 /* CombineExtensions.swift in Sources */,
 				0D42079A22DE47730010A53B /* SceneDelegate.swift in Sources */,
 				0D013CC022E4D2B20047B24E /* Extensions.swift in Sources */,
+				0DF1C4D522E5B14C00F873D3 /* PriceListRow.swift in Sources */,
 				0D42079C22DE47730010A53B /* PriceList.swift in Sources */,
 				0D21390B22E418670026388B /* RefreshableValue.swift in Sources */,
 				0DBABFEA22E27F370024BB6C /* APIModel.swift in Sources */,
@@ -398,6 +501,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0DF1C4B622E5A31000F873D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DF1C4C022E5A31000F873D3 /* TodayViewController.swift in Sources */,
+				0DF1C4CC22E5A3B300F873D3 /* Extensions.swift in Sources */,
+				0DF1C4D122E5A40700F873D3 /* CoindeskAPI.swift in Sources */,
+				0DF1C4D222E5A40D00F873D3 /* CoindeskModels.swift in Sources */,
+				0DF1C4CD22E5A3B300F873D3 /* HasDummyJSONData.swift in Sources */,
+				0DF1C4D022E5A3BC00F873D3 /* RefreshableValue.swift in Sources */,
+				0DF1C4CE22E5A3B300F873D3 /* CombineExtensions.swift in Sources */,
+				0DF1C4CF22E5A3BC00F873D3 /* APIModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -411,6 +529,11 @@
 			target = 0D42079322DE47730010A53B /* yacpa */;
 			targetProxy = 0D4207B622DE47770010A53B /* PBXContainerItemProxy */;
 		};
+		0DF1C4C622E5A31000F873D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0DF1C4B922E5A31000F873D3 /* today */;
+			targetProxy = 0DF1C4C522E5A31000F873D3 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -420,6 +543,14 @@
 				0D4207A322DE47770010A53B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		0DF1C4C122E5A31000F873D3 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DF1C4C222E5A31000F873D3 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -542,6 +673,7 @@
 		0D4207BF22DE47770010A53B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = yacpa/yacpa.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -565,6 +697,7 @@
 		0D4207C022DE47770010A53B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = yacpa/yacpa.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -667,6 +800,44 @@
 			};
 			name = Release;
 		};
+		0DF1C4C922E5A31000F873D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AUXUTTBC4T;
+				INFOPLIST_FILE = today/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pushleaf.yacpa.today;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0DF1C4CA22E5A31000F873D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AUXUTTBC4T;
+				INFOPLIST_FILE = today/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pushleaf.yacpa.today;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -702,6 +873,15 @@
 			buildConfigurations = (
 				0D4207C522DE47770010A53B /* Debug */,
 				0D4207C622DE47770010A53B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DF1C4C822E5A31000F873D3 /* Build configuration list for PBXNativeTarget "today" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DF1C4C922E5A31000F873D3 /* Debug */,
+				0DF1C4CA22E5A31000F873D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

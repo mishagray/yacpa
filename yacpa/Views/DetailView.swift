@@ -159,8 +159,10 @@ struct DetailView<ViewModel: DetailViewModelType>: View {
 
                 let symbol = viewModel.symbols[currency] ?? currency
 
-                let priceString = String(format: "%0.2f", price)
-                return "\(symbol) \(priceString)"
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .currency
+                formatter.currencySymbol = symbol
+                return formatter.string(from: NSNumber(value: price)) ?? "ERROR!!!"
 
             }
             .sorted()
