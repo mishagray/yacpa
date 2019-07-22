@@ -70,6 +70,33 @@ extension Publisher {
     }
 }
 
+class BindOnSubscription: Publisher {
+    typealias Output = Void
+    typealias Failure = Never
+
+
+    private let innerWillChange = PassthroughSubject<Void, Never>()
+    private lazy var doBindOnce: Void = {
+        // Do this once
+        self.bindOperation()
+    }()
+
+
+    var bindOperation: () -> Void
+    init(bindOperation: @escaping () -> Void) {
+        self.bindOperation = bindOperation
+    }
+
+    func send() {
+        innerWillChange.send()
+    }
+
+    func receive<S>(subscriber: S) where S: Subscriber, S.Failure == Never, S.Input == Void {
+        _ = self.doBindOnce
+        innerWillChange.receive(subscriber: subscriber)
+    }
+}
+
 
 // similar to CurrentValueSubject, but it will let you 'bind' any changes to another publisher.
 // useful if you want to convert a generic Publisher into a CurrentValueSubject

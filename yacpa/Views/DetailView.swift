@@ -9,62 +9,173 @@
 import Combine
 import SwiftUI
 
-final class DetailViewModel<Model: ModelType>: BindableObject {
-    let willChange = PassthroughSubject<Void, Never>()
+protocol DetailViewModelType: BindableObject {
+
+    var prices: [String: Double] { get }
+    var date: Date { get }
+    var symbols: [String: String] { get }
+
+}
+
+
+final class HistoricalDetailViewModel<Model: ModelType>: DetailViewModelType {
+
+    lazy var willChange = BindOnSubscription { [weak self] in
+        self?.bind()
+    }
 
     var prices: [String: Double] = [:] {
         willSet {
             willChange.send()
         }
     }
+    var symbols: [String: String] = [:] {
+        willSet {
+            willChange.send()
+        }
+    }
+
     var date = Date() {
         willSet {
             willChange.send()
         }
     }
 
-    let model: Model
+    private var cancelables = Set<AnyCancellable>()
+    private var dateString: String
+
+
+    init(dateString: String) {
+        self.dateString = dateString
+    }
+
+
+    func bind() {
+
+        // swiftlint:disable:next nesting
+        typealias HORRIBLE_RETURN_TYPE = Publishers
+            .Map<Publishers.Catch<AnyPublisher<HistoricalCloseForDay, Never>,
+                                  Empty<HistoricalCloseForDay, Never>>,
+                 (HistoricalCloseForDay, [String: String])>
+
+        let model = Model()
+        model.currentPrice
+            .first()   // first fetch the currencies and codes from latest value
+            .flatMap { currentPrice -> HORRIBLE_RETURN_TYPE in
+                var symbols = [String: String]()
+                for price in currentPrice.bpi.values {
+                    symbols[price.code] = price.symbol.htmlDecoded
+                }
+
+                let currencies = Array(symbols.keys)
+                return model
+                    .getHistoricalCloseForDay(currencies: currencies, date: self.dateString)
+                    .ignoreErrors()
+                    .map { ($0, symbols) }
+            }
+            .ignoreErrors()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] close, symbols in
+                guard let `self` = self else {
+                    return
+                }
+                self.prices = close.prices
+                self.date = close.date
+                self.symbols = symbols
+            }
+            .store(in: &cancelables)
+    }
+}
+
+final class CurrentPriceDetailViewModel<Model: ModelType>: DetailViewModelType {
+     lazy var willChange = BindOnSubscription { [weak self] in
+        self?.bind()
+     }
+
+    var prices: [String: Double] = [:] {
+        willSet {
+            willChange.send()
+        }
+    }
+    var symbols: [String: String] = [:] {
+        willSet {
+            willChange.send()
+        }
+    }
+
+    var date = Date() {
+        willSet {
+            willChange.send()
+        }
+    }
+
+    let model = Model()
     private var cancelables = Set<AnyCancellable>()
 
-    init(model: Model) {
-        self.model = model
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .medium
+    func bind() {
+        self.model.setRefreshRate(timeInterval: 10.0)
+        // swiftlint:disable:next nesting
+        typealias HORRIBLE_RETURN_TYPE = Publishers
+            .Map<Publishers.Catch<AnyPublisher<HistoricalCloseForDay, Never>,
+                                  Empty<HistoricalCloseForDay, Never>>,
+                 (HistoricalCloseForDay, [String: String])>
 
-        model.setRefreshRate(timeInterval: 60.0)
-//        model.currentPrice
-//            .map { currentPrice -> ([String], String) in
-//
-//                let priceTexts = currentPrice.bpi.values.map { price -> String in
-//                    let symbol = price.symbol.htmlDecoded
-//                    return "\(symbol) \(price.rate)"
-//                }
-//                let dateTime = dateFormatter.string(from: currentPrice.time.updatedISO)
-//
-//                return (priceTexts, dateTime)
-//            }
-//            .sink { [weak self] priceTexts, dateTime in
-//                guard let `self` = self else {
-//                    return
-//                }
-//                self.priceTexts = priceTexts
-//                self.dateTime = dateTime
-//            }
-//            .store(in: &cancelables)
+        model.currentPrice
+            .map { ($0.historicalCloseForDay, $0.symbols) }
+            .sink { [weak self] close, symbols in
+                guard let `self` = self else {
+                    return
+                }
+                self.prices = close.prices
+                self.date = close.date
+                self.symbols = symbols
+            }
+            .store(in: &cancelables)
     }
 }
 
 
-struct DetailView<Model: ModelType>: View {
-    @ObjectBinding var viewModel: DetailViewModel<Model>
+struct IdentifierString: Identifiable {
+    var id: ObjectIdentifier
+
+    var string: String
+}
+
+struct DetailView<ViewModel: DetailViewModelType>: View {
+    @ObjectBinding var viewModel: ViewModel
+
+    var priceTexts: [String] {
+        return self.viewModel.prices.map { entry in
+            let (currency, price) = entry
+
+            let symbol = viewModel.symbols[currency] ?? currency
+
+            let priceString = String(format: "%0.2f", price)
+            return "\(symbol) \(priceString)"
+
+        }.sorted().reversed()
+    }
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        formatter.doesRelativeDateFormatting = true
+        return formatter
+    }()
+
+    var dateText: String {
+        self.formatter.string(from: self.viewModel.date)
+    }
 
     var body: some View {
         VStack {
-            Text("\(viewModel.date)")
-//            ForEach(viewModel.priceTexts, id: \.self) { key in
-//                Text("\(key)")
-//            }
+            Text("\(self.dateText)")
+            VStack(alignment: .trailing) {
+                ForEach(self.priceTexts, id: \.self) {
+                    Text("\($0)")
+                }
+                Spacer()
+            }
         }
     }
 }
@@ -73,7 +184,8 @@ struct DetailView<Model: ModelType>: View {
 // swiftlint:disable:next type_name
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(viewModel: DetailViewModel(model: shared_model_Previews))
+        EmptyView()
+//        DetailView(viewModel: DetailViewModel(model: shared_model_Previews))
     }
 }
 #endif

@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    let model = APIModel(api: CoinDeskAPI.self)
+    let model = APIModel<CoinDeskAPI>()
 //    let model = APIModel(api: DummyCoinDeskAPI.self)
 
     func scene(_ scene: UIScene,

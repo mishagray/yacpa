@@ -104,24 +104,11 @@ extension CoinDeskAPIType {
     }
 
 
-    static func currentPrice() -> AnyPublisher<CurrentPrice, Failure> {
-        return shared.currentPrice()
-    }
-    static func currentPriceFor(code: String) -> AnyPublisher<CurrentPrice, Failure> {
-        return shared.currentPriceFor(code: code)
-    }
-    static func historicalClose(index: CoinDeskRequest.Index? = .USD,
-                                currency: String? = "EUR",
-                                startEnd: (String, String)? = nil) -> AnyPublisher<HistoricalClose, Failure> {
-        return shared.historicalClose(index, currency, startEnd)
-    }
-    static func supportedCurrencies() -> AnyPublisher<SupportedCurrencies, Failure> {
-        return shared.supportedCurrencies()
-    }
-
-    func historicalCloseForDay(index: CoinDeskRequest.Index? = .USD,
-                               currencies: [String],
-                               date: String) -> (CurrentValueSubject<HistoricalCloseForDay, Never>, Any) {
+    func historicalCloseForDay(
+        index: CoinDeskRequest.Index? = .USD,
+        currencies: [String],
+        date: String,
+        storeIn set: inout Set<AnyCancellable>) -> CurrentValueSubject<HistoricalCloseForDay, Never> {
 
 
         guard let close = HistoricalCloseForDay(dateString: date) else {
@@ -129,7 +116,7 @@ extension CoinDeskAPIType {
         }
         let subject = CurrentValueSubject<HistoricalCloseForDay, Never>(close)
 
-        let sinks = currencies.map { currency in
+        for currency in currencies {
             self.historicalClose(index, currency, (date, date))
                 .mapToResults()
                 .receive(on: DispatchQueue.main)
@@ -146,16 +133,10 @@ extension CoinDeskAPIType {
                         print("ERROR \(error) fetching history for currency \(currency) date \(date)")
                     }
                 }
+            .store(in: &set)
         }
-        return (subject, sinks)
+        return subject
     }
-
-    static func historicalCloseForDay(index: CoinDeskRequest.Index? = .USD,
-                                      currencies: [String],
-                                      date: String) -> (CurrentValueSubject<HistoricalCloseForDay, Never>, Any) {
-        return shared.historicalCloseForDay(index: index, currencies: currencies, date: date)
-    }
-
 
 }
 

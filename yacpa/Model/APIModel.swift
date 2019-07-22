@@ -22,6 +22,10 @@ protocol ModelType {
 
     func setRefreshRate(timeInterval: TimeInterval)
     func refresh()
+
+    func getHistoricalCloseForDay(currencies: [String], date: String) -> AnyPublisher<HistoricalCloseForDay, Never>
+
+    init()
 }
 
 extension ModelType {
@@ -56,14 +60,15 @@ extension ModelType {
 // But you can't use propertyWrappers in a protocol definition.
 // Need to figure out the balance between the desire to have 
 final class APIModel<API: CoinDeskAPIType>: ModelType {
-
     let currency: AnyPublisher<String, Never>
     let currentPriceRefreshable: RefreshableValue<CurrentPrice, API.Failure>
     let historicalPricesRefreshable: RefreshableValue<HistoricalClose, API.Failure>
 
     private var currencySubject = CurrentValueSubject<String, Never>("EUR")
-    private var cancelables = [AnyCancellable]()
     private var timerCancelable: AnyCancellable?
+
+    private var cancelables = Set<AnyCancellable>()
+
 
     var refreshRate: TimeInterval = 0.0 {
         didSet {
@@ -82,19 +87,19 @@ final class APIModel<API: CoinDeskAPIType>: ModelType {
         }
     }
 
-    init(api: API.Type) {
+    init() {
 
         currentPriceRefreshable = RefreshableValue {
-            api.shared.currentPrice()
+            API.shared.currentPrice()
         }
 
         let innerCurrency = currencySubject.print("Model.currencySubject")
         currency = currencySubject.print("Model.currency").eraseToAnyPublisher()
         historicalPricesRefreshable = RefreshableValue {
             innerCurrency.flatMap {
-                api.shared.historicalClose(currency: $0).mapToResults()
+                API.shared.historicalClose(currency: $0).mapToResults()
             }
-            .print("innerHistory:")
+//            .print("innerHistory:")
         }
         self.refresh()
     }
@@ -107,4 +112,12 @@ final class APIModel<API: CoinDeskAPIType>: ModelType {
         currentPriceRefreshable.refresh()
         historicalPricesRefreshable.refresh()
     }
+
+    func getHistoricalCloseForDay(currencies: [String], date: String) -> AnyPublisher<HistoricalCloseForDay, Never> {
+        API.shared
+            .historicalCloseForDay(currencies: currencies, date: date, storeIn: &cancelables)
+            .eraseToAnyPublisher()
+    }
+
+
 }

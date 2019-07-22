@@ -29,6 +29,13 @@ final class PriceListRowViewModel<Model: ModelType>: BindableObject, Hashable, I
         }
     }
 
+    var historicalDetailViewModel: HistoricalDetailViewModel<Model> {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: self.date)
+        return HistoricalDetailViewModel(dateString: dateString)
+    }
+
     var dateString: String {
         if showMinutes {
             let formatter = DateFormatter()
@@ -168,7 +175,7 @@ struct PriceList<Model: ModelType>: View {
 
             let firstSection =
                 Section(header: Text("Latest Price")) {
-                    NavigationLink(destination: PriceListRow(viewModel: latestData)) {
+                    NavigationLink(destination: DetailView(viewModel: CurrentPriceDetailViewModel<Model>())) {
                         PriceListRow(viewModel: latestData)
 
                     }
@@ -180,17 +187,16 @@ struct PriceList<Model: ModelType>: View {
             List {
                 if viewModel.latestData != nil {
                     Section(header: Text("Latest Price")) {
-                        // swiftlint:disable force_unwrapping
-                        NavigationLink(destination: PriceListRow(viewModel: viewModel.latestData!)) {
+                        NavigationLink(destination: DetailView(viewModel: CurrentPriceDetailViewModel<Model>())) {
+                                // swiftlint:disable:next force_unwrapping
                                 PriceListRow(viewModel: viewModel.latestData!)
 
                         }
-                        // swiftlint:enable force_unwrapping
                     }
                 }
                 Section(header: Text("Historical Prices")) {
                     ForEach(viewModel.historicalData) { rowData in
-                        NavigationLink(destination: PriceListRow(viewModel: rowData)) {
+                        NavigationLink(destination: DetailView(viewModel: rowData.historicalDetailViewModel)) {
                             PriceListRow(viewModel: rowData)
                         }
                     }

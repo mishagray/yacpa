@@ -84,4 +84,13 @@ extension CurrentPrice {
         }
         return HistoricalCloseForDay(date: self.time.updatedISO, prices: prices)
     }
+
+    var symbols: [String: String] {
+        var symbols: [String: String] = [:]
+        for price in self.bpi.values {
+            symbols[price.code] = price.symbol.htmlDecoded
+        }
+        return symbols
+    }
+
 }
